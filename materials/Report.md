@@ -29,7 +29,7 @@ To design and implement a system that automatically switches a street light **ON
 
 ## proof of working
  
-## resut
+## result
 
 
 
@@ -64,7 +64,7 @@ To control the speed and direction of a DC motor using an Arduino, a motor drive
 
 ## proof of working
  
-## resut
+## result
 
 # Experiment 3: Servo Motor Control
 
@@ -93,7 +93,7 @@ To control the angular position (speed and direction of motion) of a servo motor
 
 ## proof of working
  
-## resut
+## result
 
 
 # Experiment 4: Laptop Cooling System using Thermal Sensor
@@ -127,4 +127,4 @@ To monitor the temperature using a thermal sensor (e.g., LM35 or thermistor) and
 
 ## proof of working
  
-## resut
+## result
