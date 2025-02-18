@@ -23,8 +23,16 @@ To design and implement a system that automatically switches a street light **ON
 5. **Test** by varying the amount of light on the LDR and observe the LED turning ON/OFF based on the threshold in the code.
 
 ## Circuit Diagram
+<div align="center">
+   
 ![image](https://github.com/user-attachments/assets/ca2fdf6f-c229-46c9-9cba-e0611984f949)
+</div>
 
+## Explanation of Circuit
+- **Arduino Leonardo** is used as the microcontroller.  
+- The **light sensor** is set up in a voltage divider with a 10 kΩ resistor . The output from this divider goes to the analog input pin **A1** on the Arduino.  
+- The **LED** is powered through digital pin **5** on the Arduino. In practice, there should be a current-limiting resistor (e.g., 220 Ω) in series with the LED to protect it from excessive current.  
+- All devices share a common **VCC** and **GND** with the Arduino.
 
 ## Code
 ```c
@@ -56,13 +64,41 @@ void loop() {
 delay(500);
 }
 ```
+## Explanation of Code
+- The code **reads the light sensor’s analog value** from pin **A1**.  
+- It **turns the LED ON** if that value is below 512 (indicating lower light) and **OFF** otherwise.  
+- The current sensor value is **printed to the Serial Monitor** for easy observation.  
+- A small **delay** is included to slow down the update rate.
+
 ## proof of working
+<div align="center">
+   
  ![WhatsApp Image 2025-02-05 at 13 56 00_2e2da883](https://github.com/user-attachments/assets/2fc90af7-bdb4-4401-972f-511c609b7202)
 ![WhatsApp Image 2025-02-05 at 13 56 39_81a00a5c](https://github.com/user-attachments/assets/24a42191-1bcf-45d1-96bc-45c12a45bc1f)
 ![WhatsApp Image 2025-02-05 at 13 58 37_7a61667c](https://github.com/user-attachments/assets/c1c5c066-f251-45f8-88da-8454840351e4)
 
-## result
+</div>
 
+## Note
+
+<div align="center">
+  
+  ![image](https://github.com/user-attachments/assets/c6ef0ba2-69b4-4557-b677-ac84cc8b6921)
+
+
+
+| Arduino Pin Number | Light Sensor |
+|-------------|--------------|
+|  A1   |  CDS   |
+|5      | LED0   |
+
+
+</div>
+
+ -  **Remark** : Control selection switch should be set to LED.
+   
+## result
+When the ambient light level drops below a certain threshold (in this case, an ADC reading of 512), the Arduino turns the LED on. Conversely, if the light level is above or equal to this threshold, the LED remains off. By monitoring the serial output, you can see how the ADC value changes with the intensity of ambient light.
 
 
 # Experiment 2: DC Motor Speed & Direction Control
@@ -93,7 +129,8 @@ To control the speed and direction of a DC motor using an Arduino, a motor drive
 
 
 ## Code
-
+```c
+```
 ## proof of working
  
 ## result
@@ -122,7 +159,8 @@ To control the angular position (speed and direction of motion) of a servo motor
 *(Insert your circuit diagram here. You can embed an image or ASCII diagram.)*
 
 ## Code
-
+```c
+```
 ## proof of working
  
 ## result
@@ -149,7 +187,10 @@ To monitor the temperature using a thermal sensor (e.g., LM35 or thermistor) and
 
 ## Circuit Diagram
 - circuit explanation
+<div align="center">
+   
 ![image](https://github.com/user-attachments/assets/6b0c1499-4af1-4804-b85c-3e2c20aad16d)
+</div>
 
 ## Code
 ```c
@@ -210,13 +251,14 @@ void loop() {
   }
 ```
 ## proof of working
+<div align="center">
 
  ![WhatsApp Image 2025-02-12 at 15 30 24_3ea6d17a](https://github.com/user-attachments/assets/29d70c98-5abc-48dc-b171-e15699f85f64)
  ![WhatsApp Image 2025-02-12 at 15 30 24_96132fc4](https://github.com/user-attachments/assets/da814d7f-b8fb-4694-9b14-6dcaa70e9c2c)
 ![WhatsApp Image 2025-02-12 at 15 30 24_119b4d66](https://github.com/user-attachments/assets/b4c44bc3-6463-47c3-b5ba-f89385220e69)
 ![WhatsApp Image 2025-02-12 at 15 30 24_3b0c4e17](https://github.com/user-attachments/assets/99af8e42-9d5e-4a2f-b640-4213debd5a00)
 ![WhatsApp Image 2025-02-12 at 15 30 24_b2ff15c6](https://github.com/user-attachments/assets/5dff178d-8d4c-4979-933f-75fbe6280492)
-
+</div>
 
 ## result
    The system effectively monitors the temperature of the laptop using the thermal sensor.
