@@ -117,7 +117,7 @@ To monitor the temperature using a thermal sensor (e.g., LM35 or thermistor) and
 
 ## Circuit Diagram
 - circuit explanation
-![image](https://github.com/user-attachments/assets/88504356-372c-42da-ab51-8b54d2f706c2)
+![image](https://github.com/user-attachments/assets/6b0c1499-4af1-4804-b85c-3e2c20aad16d)
 
 ## Code
 ```c
