@@ -5,7 +5,7 @@
 To design and implement a system that automatically switches a street light **ON** and **OFF** based on ambient light intensity using an Arduino and a light sensor (e.g., LDR).
 
 ## Materials Required
-- Arduino UNO (or equivalent)  
+- Arduino leonardo
 - Light Dependent Resistor (LDR)  
 - 10 kΩ resistor (for voltage divider)  
 - LED (to simulate the street light)  
@@ -23,12 +23,44 @@ To design and implement a system that automatically switches a street light **ON
 5. **Test** by varying the amount of light on the LDR and observe the LED turning ON/OFF based on the threshold in the code.
 
 ## Circuit Diagram
-![image](https://github.com/user-attachments/assets/550825a8-57bc-4c41-9aa3-b82bf6d6496e)
+![image](https://github.com/user-attachments/assets/ca2fdf6f-c229-46c9-9cba-e0611984f949)
+
 
 ## Code
+```c
+int pin_CDS = A1;   // pin number of Light Sensor
+int pin_LED0 = 5;    // pin number of LED0
+void setup() {
+  pinMode(pin_CDS, INPUT);       // Set  light sensor pin as an input pin
 
+  pinMode(pin_LED0, OUTPUT);        // Set LED0 pin as output pin
+  // Serial Setting : Baud rate 115200, data 8bit, no parity, stop 1bit
+  Serial.begin(115200);    // same as Serial.begin(115200, SERIAL_8N1)
+  while(!Serial);          //Wait until the serial port is connected
+}
+void loop() {
+  uint16_t ADC_data;
+  // Read the analog value of the light sensor as a digital value
+  // The higher the digital value, the brighter the light
+  ADC_data = analogRead(pin_CDS);
+  Serial.print("ADC Data : ");
+  Serial.println(ADC_data);    // Outputs the ADC value in serial 
+  // If the value measured by light sensor is less than 512, turn on LED0
+  if(ADC_data < 512){
+    // Output HIGH to LED0 pin (LED0 ON)
+    digitalWrite(pin_LED0, 1);}
+  // If the value measured by light sensor is greater than or equal to 512,turn off LED0
+  else{
+    // Output LOW to LED0 pin (LED0 OFF)
+    digitalWrite(pin_LED0, 0);}
+delay(500);
+}
+```
 ## proof of working
- 
+ ![WhatsApp Image 2025-02-05 at 13 56 00_2e2da883](https://github.com/user-attachments/assets/2fc90af7-bdb4-4401-972f-511c609b7202)
+![WhatsApp Image 2025-02-05 at 13 56 39_81a00a5c](https://github.com/user-attachments/assets/24a42191-1bcf-45d1-96bc-45c12a45bc1f)
+![WhatsApp Image 2025-02-05 at 13 58 37_7a61667c](https://github.com/user-attachments/assets/c1c5c066-f251-45f8-88da-8454840351e4)
+
 ## result
 
 
@@ -39,7 +71,7 @@ To design and implement a system that automatically switches a street light **ON
 To control the speed and direction of a DC motor using an Arduino, a motor driver (e.g., L293D or L298N), and PWM signals.
 
 ## Materials Required
-- Arduino UNO (or equivalent)  
+- Arduino leonardo
 - DC motor (6V–12V)  
 - Motor driver IC (L293D or L298N)  
 - External power supply for the motor (9V or 12V)  
@@ -72,7 +104,7 @@ To control the speed and direction of a DC motor using an Arduino, a motor drive
 To control the angular position (speed and direction of motion) of a servo motor using Arduino, demonstrating precise position control.
 
 ## Materials Required
-- Arduino UNO (or equivalent)  
+- Arduino leonardo
 - Servo motor (e.g., SG90 or MG995)  
 - Breadboard and jumper wires  
 - (Optional) External power supply, if the servo needs higher current
