@@ -102,7 +102,7 @@ To control the angular position (speed and direction of motion) of a servo motor
 To monitor the temperature using a thermal sensor (e.g., LM35 or thermistor) and automatically switch a cooling fan **ON** when the temperature exceeds a certain threshold.
 
 ## Materials Required
-- Arduino UNO (or equivalent)  
+- Arduino leonardo
 - Temperature sensor (LM35)  
 - DC fan (5V or 12V)  
 - Transistor or motor driver (for controlling the fan)  
@@ -116,6 +116,7 @@ To monitor the temperature using a thermal sensor (e.g., LM35 or thermistor) and
 5. **Test** by monitoring the temperature reading. When it exceeds the set threshold, the fan should automatically power ON and turn OFF when below the threshold.
 
 ## Circuit Diagram
+- circuit explanation
 ![image](https://github.com/user-attachments/assets/88504356-372c-42da-ab51-8b54d2f706c2)
 
 ## Code
@@ -177,6 +178,7 @@ void loop() {
   }
 ```
 ## proof of working
+
  ![WhatsApp Image 2025-02-12 at 15 30 24_3ea6d17a](https://github.com/user-attachments/assets/29d70c98-5abc-48dc-b171-e15699f85f64)
  ![WhatsApp Image 2025-02-12 at 15 30 24_96132fc4](https://github.com/user-attachments/assets/da814d7f-b8fb-4694-9b14-6dcaa70e9c2c)
 ![WhatsApp Image 2025-02-12 at 15 30 24_119b4d66](https://github.com/user-attachments/assets/b4c44bc3-6463-47c3-b5ba-f89385220e69)
