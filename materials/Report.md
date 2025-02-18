@@ -23,7 +23,7 @@ To design and implement a system that automatically switches a street light **ON
 5. **Test** by varying the amount of light on the LDR and observe the LED turning ON/OFF based on the threshold in the code.
 
 ## Circuit Diagram
-
+![image](https://github.com/user-attachments/assets/550825a8-57bc-4c41-9aa3-b82bf6d6496e)
 
 ## Code
 
