@@ -130,6 +130,42 @@ To control the speed and direction of a DC motor using an Arduino, a motor drive
 
 ## Code
 ```c
+int pin_DC_A=5;
+int pin_DC_B=6;
+void setup(){
+  pinMode(pin_DC_A, OUTPUT);
+  pinMode(pin_DC_B, OUTPUT);}
+void loop(){
+  int Speed_value;
+  for(Speed_value=0;Speed_value<170;Speed_value++){
+    forwardRotation(Speed_value);
+    delay(20);}
+    
+  Stop();
+  delay(7000);
+  
+  for(Speed_value=200;Speed_value<0;Speed_value--){
+    reverseRotation(Speed_value);
+    delay(20);}
+  Stop();
+  delay(7000);
+}
+
+void forwardRotation(int Speed)
+{
+  analogWrite(pin_DC_A,Speed);
+  digitalWrite(pin_DC_B,0);
+}
+void reverseRotation(int Speed)
+{
+  analogWrite(pin_DC_B,Speed);
+  digitalWrite(pin_DC_A,0);
+}
+void Stop(void)
+{
+  digitalWrite(pin_DC_A,0);
+  digitalWrite(pin_DC_B,0);
+}
 ```
 ## proof of working
  
@@ -160,6 +196,32 @@ To control the angular position (speed and direction of motion) of a servo motor
 
 ## Code
 ```c
+#include <Servo.h>
+int pin_SERVO = 13;
+Servo SERVO;
+
+void setup(){
+  SERVO.attach(pin_SERVO);
+  
+  SERVO.write(0);
+  delay(2000);
+  }
+
+void loop(){
+  unsigned char angle;
+  for(angle=0;angle<=180;angle+=5){
+    SERVO.write(angle);
+    delay(500);
+    }
+   delay(1000);
+     for(angle=180;angle>=90;angle-=10){
+    SERVO.write(angle);
+    delay(1000);
+   }
+   delay(1000);
+   SERVO.write(0);
+   delay(1000);
+  } 
 ```
 ## proof of working
  
