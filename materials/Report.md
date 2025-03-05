@@ -168,7 +168,7 @@ void Stop(void)
 }
 ```
 ## proof of working
- 
+## Note
 ## result
 
 # Experiment 3: Servo Motor Control
@@ -248,11 +248,17 @@ To monitor the temperature using a thermal sensor (e.g., LM35 or thermistor) and
 5. **Test** by monitoring the temperature reading. When it exceeds the set threshold, the fan should automatically power ON and turn OFF when below the threshold.
 
 ## Circuit Diagram
-- circuit explanation
+
 <div align="center">
    
 ![image](https://github.com/user-attachments/assets/6b0c1499-4af1-4804-b85c-3e2c20aad16d)
 </div>
+
+## Explanation of Circuit
+- An **Arduino** serves as the main controller.  
+- The **temperature sensor** (LM35) is connected to an analog input pin (e.g., A0). This pin reads the voltage output of the sensor, which corresponds to the measured temperature.  
+- A **motor driver** is used to power the **DC fan**. The Arduino’s digital output pin controls the motor driver, switching the fan power on or off. 
+- The Arduino, sensor, and driver circuit share a **common ground** (GND). If the fan requires a higher voltage (e.g., 12V), an external power supply is provided, and its negative terminal is tied to the Arduino’s GND.
 
 ## Code
 ```c
@@ -312,6 +318,14 @@ void loop() {
     digitalWrite(pin_DC_B, 0);
   }
 ```
+
+## Explanation of Code
+- The code **reads the sensor’s analog voltage** using `analogRead()`.  
+- It **converts** this reading to a temperature value (depending on the specific sensor calibration).  
+- The temperature is then **compared to a threshold** (e.g., 35°C).  
+- If the measured temperature **exceeds the threshold**, the Arduino **sets a digital output pin HIGH**, powering the transistor and turning the fan on. Otherwise, it sets the pin LOW, turning the fan off.  
+- Throughout the loop, the **temperature and fan status** can be printed to the Serial Monitor for debugging or monitoring purposes.
+
 ## proof of working
 <div align="center">
 
@@ -320,7 +334,9 @@ void loop() {
 ![WhatsApp Image 2025-02-12 at 15 30 24_119b4d66](https://github.com/user-attachments/assets/b4c44bc3-6463-47c3-b5ba-f89385220e69)
 ![WhatsApp Image 2025-02-12 at 15 30 24_3b0c4e17](https://github.com/user-attachments/assets/99af8e42-9d5e-4a2f-b640-4213debd5a00)
 ![WhatsApp Image 2025-02-12 at 15 30 24_b2ff15c6](https://github.com/user-attachments/assets/5dff178d-8d4c-4979-933f-75fbe6280492)
-</div>
+</div
+   
+## Note
 
 ## result
    The system effectively monitors the temperature of the laptop using the thermal sensor.
