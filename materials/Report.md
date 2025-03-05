@@ -104,15 +104,14 @@ When the ambient light level drops below a certain threshold (in this case, an A
 # Experiment 2: DC Motor Speed & Direction Control
 
 ## Aim
-To control the speed and direction of a DC motor using an Arduino, a motor driver (e.g., L293D or L298N), and PWM signals.
+To control the speed and direction of a DC motor using an Arduino, a motor driver (BA6208F).
 
 ## Materials Required
 - Arduino leonardo
 - DC motor (6V–12V)  
-- Motor driver IC (L293D or L298N)  
-- External power supply for the motor (9V or 12V)  
+- Motor driver IC (BA6208F)  
 - Breadboard and jumper wires  
-- (Optional) Potentiometer (10 kΩ) for variable speed input
+  
 
 ## Procedure
 1. **Turn on the Arduino IDE**.  
@@ -125,8 +124,17 @@ To control the speed and direction of a DC motor using an Arduino, a motor drive
 5. **Test** by adjusting the speed (via code or a potentiometer) and toggling direction pins; observe the motor’s response.
 
 ## Circuit Diagram
-*(Insert your circuit diagram here. You can embed an image or ASCII diagram.)*
+![image](https://github.com/user-attachments/assets/f6b4486d-6597-4626-afb9-31aa2b91765b)
 
+## Explanation of Circuit
+- **Microcontroller (Arduino)**: Provides the control signals for motor speed and direction.  
+- **Motor Driver IC (e.g., L293D or L298N)**:
+  - **Input Pins** (IN1, IN2, IN3, IN4) connect to Arduino digital pins. Two of these pins control the direction (e.g., IN1 and IN2 for one motor), while one (or both) can be used with **PWM** for speed control on Arduino pins supporting `analogWrite()`.
+  - **Enable Pins** (EN1, EN2) may need to be connected to a digital pin or tied HIGH for the driver to operate.
+  - **Motor Power Supply (Vs)** provides the voltage and current for the DC motor (e.g., 9V or 12V).  
+  - **Logic Power (Vss)** powers the driver’s internal logic (usually 5V from the Arduino).  
+- **DC Motor** is connected across the driver’s **motor output pins** (e.g., OUT1 and OUT2 for a single motor).  
+- **Common Ground**: The negative terminal of the motor’s power supply and the Arduino GND are tied together to ensure the signals share a common reference.
 
 ## Code
 ```c
@@ -167,65 +175,38 @@ void Stop(void)
   digitalWrite(pin_DC_B,0);
 }
 ```
+
+## Explanation of Code
+- **Pin Assignments**:  
+  - Two Arduino pins are designated for motor direction (e.g., `dirPin1` and `dirPin2`).  
+  - One Arduino PWM pin is designated for motor speed (e.g., `pwmPin`).  
+- **Setup**:  
+  - The direction pins are declared as outputs using `pinMode()`.  
+  - The PWM pin is also set as an output.
+- **Loop**:  
+  - **Direction Control**: Set one direction pin HIGH and the other LOW to spin the motor one way; reverse their states to spin in the opposite direction.  
+  - **Speed Control**: Use `analogWrite(pwmPin, speedValue);` to vary the duty cycle (0–255), controlling how fast the motor spins.  
+- **Example Flow**:  
+  1. **Set direction** pins to define clockwise or counterclockwise rotation.  
+  2. **Write a PWM value** (e.g., between 0 and 255) to the speed pin to run the motor at the desired speed.  
+  3. (Optional) **Delay** to observe the motor’s behavior before changing direction or speed again.  
+
+By adjusting the PWM duty cycle, you regulate the motor’s speed; by switching the direction pins, you reverse the motor’s rotation. Together, these steps form a basic but effective method for **DC motor speed and direction control** using a standard motor driver IC and an Arduino.
+
 ## proof of working
+![WhatsApp Image 2025-03-05 at 14 04 40_a2361a84](https://github.com/user-attachments/assets/b263fdab-30df-46d4-a129-3fac51068fdb)
+![WhatsApp Image 2025-03-05 at 14 04 43_1f8acbd7](https://github.com/user-attachments/assets/68c180d5-ab0d-40aa-a085-291f7fafa030)
+
+
 ## Note
+
+| Arduino Pin Number | Light Sensor |
+|-------------|--------------|
+|  5   |  AIN   |
+|  6   |  BIN   |
+
 ## result
-
-# Experiment 3: Servo Motor Control
-
-## Aim
-To control the angular position (speed and direction of motion) of a servo motor using Arduino, demonstrating precise position control.
-
-## Materials Required
-- Arduino leonardo
-- Servo motor (e.g., SG90 or MG995)  
-- Breadboard and jumper wires  
-- (Optional) External power supply, if the servo needs higher current
-
-## Procedure
-1. **Turn on the Arduino IDE**.  
-2. **Type or paste the given code** that uses the `Servo.h` library to control servo angle.  
-3. **Make the connections** following the circuit diagram:
-   - Servo signal wire to a PWM pin (e.g., pin 9).  
-   - Servo Vcc to 5V, GND to Arduino GND.  
-4. **Upload the code** to the Arduino, ensuring correct board and port settings.  
-5. **Test** by observing the servo’s movement, which should rotate to the angles specified in the code (or respond to a potentiometer input, if used).
-
-## Circuit Diagram
-*(Insert your circuit diagram here. You can embed an image or ASCII diagram.)*
-
-## Code
-```c
-#include <Servo.h>
-int pin_SERVO = 13;
-Servo SERVO;
-
-void setup(){
-  SERVO.attach(pin_SERVO);
-  
-  SERVO.write(0);
-  delay(2000);
-  }
-
-void loop(){
-  unsigned char angle;
-  for(angle=0;angle<=180;angle+=5){
-    SERVO.write(angle);
-    delay(500);
-    }
-   delay(1000);
-     for(angle=180;angle>=90;angle-=10){
-    SERVO.write(angle);
-    delay(1000);
-   }
-   delay(1000);
-   SERVO.write(0);
-   delay(1000);
-  } 
-```
-## proof of working
- 
-## result
+By adjusting the PWM output and switching the control pins for direction, the DC motor successfully varies its speed and reverses rotation. Observing the motor confirms that lower PWM duty cycles result in slower rotation, while higher duty cycles increase the motor speed. Changing the polarity via the motor driver direction pins reverses the motor’s direction, demonstrating successful control of both speed and direction.
 
 
 # Experiment 4: Laptop Cooling System using Thermal Sensor
@@ -334,9 +315,16 @@ void loop() {
 ![WhatsApp Image 2025-02-12 at 15 30 24_119b4d66](https://github.com/user-attachments/assets/b4c44bc3-6463-47c3-b5ba-f89385220e69)
 ![WhatsApp Image 2025-02-12 at 15 30 24_3b0c4e17](https://github.com/user-attachments/assets/99af8e42-9d5e-4a2f-b640-4213debd5a00)
 ![WhatsApp Image 2025-02-12 at 15 30 24_b2ff15c6](https://github.com/user-attachments/assets/5dff178d-8d4c-4979-933f-75fbe6280492)
-</div
-   
+</div>
+
 ## Note
 
+   ![image](https://github.com/user-attachments/assets/0db3442c-a847-42b9-95c8-7ad493ea4e0d)
+
+| Arduino Pin Number | Light Sensor |
+|-------------|--------------|
+|  A4   |  LM35   |
+|  5   |  AIN   |
+|  6   |  BIN   |
 ## result
    The system effectively monitors the temperature of the laptop using the thermal sensor.
