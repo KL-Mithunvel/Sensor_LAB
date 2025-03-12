@@ -326,5 +326,16 @@ void loop() {
 |  A4   |  LM35   |
 |  5   |  AIN   |
 |  6   |  BIN   |
+
+- THE SAME CAN BE ACHIVED WITH DHT 22 / DHT 11 (AND BOTH WAS DONE)  
+
 ## result
    The system effectively monitors the temperature of the laptop using the thermal sensor.
+
+
+
+
+
+   ![image](https://github.com/user-attachments/assets/6e22ec96-5541-4492-b80a-bbb01d951225)
+
+![image](https://github.com/user-attachments/assets/4c1603f0-54db-41e4-841f-499782670b70)
